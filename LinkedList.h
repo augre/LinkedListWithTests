@@ -23,7 +23,7 @@ typedef struct List_ {
 } List;
 
 void LinkedList_Create(List *list, void (*destroy)(void * data));
-void LinkedList_Destroy(void);
+void LinkedList_Destroy(List *list);
 int LinkedList_InsertNext(List *list, ListElmnt *element, const void *data);
 int LinkedList_RemoveNext(List *list, ListElmnt *element, void **data);
 #define list_size(list) ((list)->size)

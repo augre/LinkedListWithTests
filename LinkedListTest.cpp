@@ -45,6 +45,16 @@ TEST(LinkedList, Create)
 	CHECK_EQUAL(0, list_tail(&list));
 }
 
+TEST(LinkedList, Destroy)
+{
+	put10IntsInTheList(&list);
+	CHECK_EQUAL(11, list_size(&list));
+	LinkedList_Destroy(&list);
+	LONGS_EQUAL(0, list_size(&list));
+	CHECK_EQUAL(0, list_head(&list));
+	CHECK_EQUAL(0, list_tail(&list));
+}
+
 TEST(LinkedList, insert10Elements)
 {
 	put10IntsInTheList(&list);

@@ -8,8 +8,19 @@ void LinkedList_Create(List *list, void (*destroy)(void *data))
 	list->tail = NULL;
 }
 
-void LinkedList_Destroy(void)
+void LinkedList_Destroy(List *list)
 {
+	void *data;
+
+	while (list_size(list)>0)
+	{
+		if(LinkedList_RemoveNext(list, NULL, (void**)&data)==0 && list->destroy !=NULL)
+		{
+			list->destroy(data);
+		}
+	}
+
+	memset(list, 0, sizeof(List));
 }
 
 
