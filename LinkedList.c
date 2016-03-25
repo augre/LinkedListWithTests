@@ -34,3 +34,35 @@ int LinkedList_InsertNext(List *list, ListElmnt *element, const void *data)
 	list->size++;
 	return 0; 
 }
+
+int LinkedList_RemoveNext(List *list, ListElmnt *element, void **data){
+	ListElmnt *old_lement;
+
+	if (list_size(list) == 0)
+		return -1;
+
+	if (element == NULL)
+	{
+		*data = list->head->data;
+		old_lement = list->head;
+		list->head = list->head->next;
+		if(list_size(list)==1)
+			list->tail = NULL;
+	}
+	else
+	{
+		if(element->next == NULL)
+			return -1;
+
+		*data = element->next->data;
+		old_lement = element->next;
+		element->next = element->next->next;
+
+		if(element->next == NULL)
+			list->tail = element;
+	}
+
+	free(old_lement);
+	list->size--;
+	return 0;
+}
