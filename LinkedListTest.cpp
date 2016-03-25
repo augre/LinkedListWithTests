@@ -57,4 +57,30 @@ TEST(LinkedList, insert10Elements)
 		element = list_next(element);
 	}
 }
+
+TEST(LinkedList, insert10ElementsAndRemove7)
+{
+	put10IntsInTheList(&list);
+	CHECK_EQUAL(10, list_size(&list));
+	element = list_head(&list);
+	for (i=0; i<5; i++)
+		element = list_next(element);
+	if (LinkedList_RemoveNext(&list, element, (void**)&data)!=0)
+		FAIL("failed to remove");
+	CHECK_EQUAL(9, list_size(&list));
+	CHECK_EQUAL(7, *data)
+}
+
+TEST(LinkedList, removeAllElements)
+{
+	put10IntsInTheList(&list);
+	CHECK_EQUAL(10, list_size(&list));
+	int size=list_size(&list);
+	for (i=0; i<size; i++)
+	{
+		if (LinkedList_RemoveNext(&list, NULL, (void**)&data)!=0)
+			FAIL("failed to remove");
+		free(data);
+	}
+	CHECK_EQUAL(0, list_size(&list));
 }
