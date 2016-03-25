@@ -5,6 +5,21 @@ extern "C"
 
 #include "CppUTest/TestHarness.h"
 
+void put10IntsInTheList(List *list)
+{
+	int i, *data;
+	ListElmnt *element;
+	element = list_head(list);
+	for (i = 10; i > 0; i--) {
+		if ((data = (int *)malloc(sizeof(int))) == NULL)
+			return;
+		*data = i;
+	if (LinkedList_InsertNext(list, NULL, data) != 0)
+		return;
+
+	  }
+}
+
 TEST_GROUP(LinkedList)
 {
 	List list;
