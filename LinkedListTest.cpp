@@ -24,11 +24,11 @@ TEST_GROUP(LinkedList)
 {
 	List list;
 	ListElmnt *element;
-	int *data, *data2;
+	int *data, *data2, i;
 
 	void setup()
 	{
-		LinkedList_Create(&list, NULL);
+		LinkedList_Create(&list, free);
 	}
 
 	void teardown()
@@ -39,20 +39,22 @@ TEST_GROUP(LinkedList)
 
 TEST(LinkedList, Create)
 {
-	LONGS_EQUAL(0, list.size);
-	CHECK_EQUAL(0, list.destroy);
-	CHECK_EQUAL(0, list.head);
-	CHECK_EQUAL(0, list.tail);
+	LONGS_EQUAL(0, list_size(&list));
+	CHECK_EQUAL(free, list.destroy);
+	CHECK_EQUAL(0, list_head(&list));
+	CHECK_EQUAL(0, list_tail(&list));
 }
 
-TEST(LinkedList, insert)
+TEST(LinkedList, insert10Elements)
 {
-	if ((data = (int *)malloc(sizeof(int))) == NULL)
-		FAIL("bad malloc");
-	*data = 29;
-	CHECK_EQUAL(0,LinkedList_InsertNext(&list, NULL,data));
-	CHECK_EQUAL(1, list.size);
-	element = list.head;
-	data2 =(int*) element->data;
-	CHECK_EQUAL(*data, *data2);
+	put10IntsInTheList(&list);
+	CHECK_EQUAL(10, list_size(&list));
+	element = list_head(&list);
+	for(i=1; i<11; i++)
+	{
+		data = (int*) list_data(element);
+		CHECK_EQUAL(i,*data)
+		element = list_next(element);
+	}
+}
 }
