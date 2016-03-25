@@ -1,3 +1,6 @@
+#include<string.h>
+#include<stdlib.h>
+
 #include "LinkedList.h"
 
 void LinkedList_Create(List *list, void (*destroy)(void *data))
