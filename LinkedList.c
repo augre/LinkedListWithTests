@@ -28,7 +28,10 @@ int LinkedList_InsertNext(List *list, ListElmnt *element, const void *data)
 		list->head = new_element;
 	}
 	else{
-		return -1;
+		if (element->next == NULL)
+			list->tail = new_element;
+		new_element->next = element->next;
+		element->next = new_element;
 	}
 
 	list->size++;
