@@ -33,7 +33,7 @@ TEST_GROUP(LinkedList)
 
 	void teardown()
 	{
-		//       LinkedList_Destroy();
+		LinkedList_Destroy(&list);
 	}
 };
 
