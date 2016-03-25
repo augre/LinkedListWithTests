@@ -25,5 +25,18 @@ typedef struct List_ {
 void LinkedList_Create(List *list, void (*destroy)(void * data));
 void LinkedList_Destroy(void);
 int LinkedList_InsertNext(List *list, ListElmnt *element, const void *data);
+#define list_size(list) ((list)->size)
+
+#define list_head(list) ((list)->head)
+
+#define list_tail(list) ((list)->tail)
+
+#define list_is_head(list, element) ((element) == (list)->head ? 1 : 0)
+
+#define list_is_tail(element) ((element)->next == NULL ? 1 : 0)
+
+#define list_data(element) ((element)->data)
+
+#define list_next(element) ((element)->next)
 
 #endif  /* D_FakeLinkedList_H */
