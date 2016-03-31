@@ -14,8 +14,8 @@ void put10IntsInTheList(List *list)
 		if ((data = (int *)malloc(sizeof(int))) == NULL)
 			return;
 		*data = i;
-	if (LinkedList_InsertNext(list, NULL, data) != 0)
-		return;
+		if (LinkedList_InsertNext(list, NULL, data) != 0)
+			return;
 
 	  }
 }
